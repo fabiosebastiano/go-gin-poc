@@ -26,13 +26,12 @@ func main() {
 	server := gin.New()
 
 	server.Static("/css", "./templates/css")
-	server.LoadHTMLGlob("templates/*.html")
+	server.LoadHTMLGlob("./templates/*.html")
 
-	server.Use(gin.Recovery(), middlewares.Logger()) //	middlewares.BasicAuth(),
-	//	, gindump.Dump()
+	server.Use(gin.Recovery(), middlewares.Logger())
 
 	//CREIAMO GRUPPO DI ROUTES PER LE API
-	apiRoutes := server.Group("api")
+	apiRoutes := server.Group("api", middlewares.BasicAuth())
 	{
 		apiRoutes.GET("/videos", func(ctx *gin.Context) {
 			ctx.JSON(200, videoController.FindAll())
@@ -55,5 +54,12 @@ func main() {
 		//	viewRoutes.POST("/videos", nil)
 	}
 
-	server.Run(":8080")
+	// SETTA VAR ENV DALLA CONSOLE DI EB
+	port := os.Getenv("PORT")
+	// eb forwarda le richieste alla porta 5000 >>> USA NGNX
+	if port == "" {
+		port = "5000"
+	}
+
+	server.Run(":" + port)
 }
