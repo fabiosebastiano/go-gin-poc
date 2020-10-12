@@ -25,3 +25,9 @@ jobs:
        
     - name: Build
       run: go build -o bin/golang-gin-poc -v .
+      
+  test:
+    runs-on: ubuntu-latest
+    steps:    
+      - name: Test
+        run: go test service/*.go
