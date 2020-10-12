@@ -14,6 +14,9 @@ import (
 var (
 	videoService    service.VideoService       = service.New()
 	videoController controller.VideoController = controller.New(videoService)
+	loginService    service.LoginService       = service.NewLoginService()
+	jwtService      service.JWTService         = service.NewJWTService()
+	loginController controller.LoginController = controller.NewLoginController(loginService, jwtService)
 )
 
 func setupLogOutput() {
@@ -30,8 +33,21 @@ func main() {
 
 	server.Use(gin.Recovery(), middlewares.Logger())
 
-	//CREIAMO GRUPPO DI ROUTES PER LE API
-	apiRoutes := server.Group("api", middlewares.BasicAuth())
+	// Login endpoint: Autenticazione + Token Creation
+	server.POST("/login", func(ctx *gin.Context) {
+		token := loginController.Login(ctx)
+		if token != "" {
+			ctx.JSON(http.StatusOK, gin.H{
+				"token": token,
+			})
+		} else {
+			ctx.JSON(http.StatusUnauthorized, nil)
+		}
+
+	})
+
+	//CREIAMO GRUPPO DI ROUTES PER LE API a cui applichiamo middleware di JWT Authorization
+	apiRoutes := server.Group("api", middlewares.AuthorizeJWT())
 	{
 		apiRoutes.GET("/videos", func(ctx *gin.Context) {
 			ctx.JSON(200, videoController.FindAll())
