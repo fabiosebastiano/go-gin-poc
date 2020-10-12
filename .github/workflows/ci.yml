@@ -2,7 +2,7 @@ name: GO_CI
 
 on:
   push:
-    branches: [ master, ci ]
+    branches: [ master, CI ]
 
 jobs:
 
@@ -24,7 +24,7 @@ jobs:
       run: go get -v -t -d ./...
        
     - name: Build
-      run: go build -o bin/golang-gin-poc -v .
+      run: go build -o bin/go-gin-poc -v .
   
   test:
     name: Test
