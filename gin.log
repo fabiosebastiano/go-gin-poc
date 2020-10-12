@@ -10,10 +10,18 @@
 	- header.html
 	- index.html
 
-[GIN-debug] GET    /api/videos               --> main.main.func1 (4 handlers)
-[GIN-debug] POST   /api/videos               --> main.main.func2 (4 handlers)
+[GIN-debug] POST   /login                    --> main.main.func1 (3 handlers)
+[GIN-debug] GET    /api/videos               --> main.main.func2 (4 handlers)
+[GIN-debug] POST   /api/videos               --> main.main.func3 (4 handlers)
 [GIN-debug] GET    /view/videos              --> github.com/fabiosebastiano/go-gin-poc/controller.VideoController.ShowAll-fm (3 handlers)
 [GIN-debug] Listening and serving HTTP on :5000
-[12 Oct 20 08:32 CEST] (::1) GET  /api/videos 200 567.704µs
-[12 Oct 20 08:32 CEST] (::1) POST  /api/videos 200 315.55µs
-[12 Oct 20 08:32 CEST] (::1) GET  /api/videos 200 110.661µs
+[12 Oct 20 15:28 CEST] (::1) GET  /login 404 211ns
+[12 Oct 20 15:28 CEST] (::1) POST  /login 200 440.051µs
+[12 Oct 20 15:32 CEST] (::1) GET  /api/posts 404 162ns
+[12 Oct 20 15:32 CEST] (::1) GET  /api/videos 401 50.206µs
+[12 Oct 20 15:35 CEST] (::1) POST  /api/videos 401 30.212µs
+[12 Oct 20 15:35 CEST] (::1) POST  /api/videos 401 41.921µs
+[12 Oct 20 15:36 CEST] (::1) POST  /api/videos 200 338.633µs
+[12 Oct 20 15:36 CEST] (::1) GET  /api/videos 401 38.285µs
+[12 Oct 20 15:36 CEST] (::1) GET  /api/videos 401 35.362µs
+[12 Oct 20 15:36 CEST] (::1) GET  /api/videos 200 137.673µs
