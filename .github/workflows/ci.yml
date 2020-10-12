@@ -2,7 +2,7 @@ name: GO_CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, ci ]
 
 jobs:
 
