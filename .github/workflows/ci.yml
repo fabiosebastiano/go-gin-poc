@@ -2,7 +2,7 @@ name: GO_CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, ci ]
 
 jobs:
 
@@ -31,7 +31,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-
+    - uses: actions/checkout@v2
     - name: execeute test
       run: go test service/*.go
 
