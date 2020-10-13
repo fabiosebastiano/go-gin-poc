@@ -16,6 +16,9 @@ require (
 	github.com/mailru/easyjson v0.7.6 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.1 // indirect
+	github.com/nxadm/tail v1.4.5 // indirect
+	github.com/onsi/ginkgo v1.14.2
+	github.com/onsi/gomega v1.10.3
 	github.com/stretchr/testify v1.4.0
 	github.com/swaggo/swag v1.6.7
 	github.com/tpkeeper/gin-dump v1.0.0 // indirect
